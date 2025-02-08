@@ -1,12 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Cookies Recheados</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Bright+Retro&display=swap" rel="stylesheet">
     <style>
+        /* variáveis de cores para o tema claro */
         :root {
             --primary-color: #262b56;
             --secondary-color: #c8beb8;
@@ -15,6 +22,7 @@
             --form-bg: #fff;
         }
 
+        /*  variáveis de cores para o tema escuro */
         [data-theme="dark"] {
             --primary-color: #262b56;
             --secondary-color: #1a1a1a;
@@ -22,7 +30,8 @@
             --bg-color: #333;
             --form-bg: #444;
         }
-        
+
+        /* corpo da página */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -32,6 +41,7 @@
             padding: 0;
         }
 
+        /* container principal */
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -40,13 +50,15 @@
             background-color: var(--secondary-color);
         }
 
+        /* container do formulário */
         .form-container {
             background-color: var(--form-bg);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
+        /*  controles de quantidade */
         .quantity-control {
             display: flex;
             align-items: center;
@@ -55,11 +67,13 @@
             margin: 10px 0;
         }
 
+        /*  botões primários */
         .btn-primary {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
         }
 
+        /* espaço para o logo */
         .logo-space {
             height: 100px;
             margin: 20px 0;
@@ -68,11 +82,13 @@
             align-items: center;
         }
 
+        /* imagem do logo */
         .logo-space img {
             max-height: 100%;
             width: auto;
         }
 
+        /*opções de pagamento */
         .payment-options {
             margin-top: 15px;
             padding: 10px;
@@ -80,6 +96,7 @@
             background-color: var(--form-bg);
         }
 
+        /* botão de troca de tema */
         .theme-switch {
             position: fixed;
             top: 20px;
@@ -87,45 +104,59 @@
             z-index: 1000;
         }
 
-        .form-label, .form-check-label {
+        /* labels do formulário */
+        .form-label,
+        .form-check-label {
             color: var(--text-color);
         }
 
-        .form-control, .form-select {
+        /*campos de formulário */
+        .form-control,
+        .form-select {
             background-color: var(--form-bg);
             color: var(--text-color);
             border-color: var(--primary-color);
         }
 
-        .form-control:focus, .form-select:focus {
+        /* foco nos campos de formulário */
+        .form-control:focus,
+        .form-select:focus {
             background-color: var(--form-bg);
             color: var(--text-color);
         }
     </style>
 </head>
+
 <body>
+
     <div id="root"></div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    
-    <script type="text/babel">
-        function App() {
-            const [nome, setNome] = React.useState('');
-            const [sabores, setSabores] = React.useState([{sabor: '', quantidade: 1}]);
-            const [fiado, setFiado] = React.useState(false);
-            const [darkMode, setDarkMode] = React.useState(false);
 
+
+    <script type="text/babel">
+
+        function App() {
+            // Estados do componente
+            const [nome, setNome] = React.useState(''); // Estado para o nome do cliente
+            const [sabores, setSabores] = React.useState([{ sabor: '', quantidade: 1 }]); // Estado para os sabores selecionados
+            const [fiado, setFiado] = React.useState(false); // Estado para controle de pagamento fiado
+            const [darkMode, setDarkMode] = React.useState(false); // Estado para controle do tema
+
+            // Efeito para alternar o tema
             React.useEffect(() => {
                 document.body.setAttribute('data-theme', darkMode ? 'dark' : 'light');
             }, [darkMode]);
 
+            // Lista de sabores disponíveis
             const saboresDisponiveis = [
                 'Café',
                 'Chocolate',
-                'Churros', 
+                'Churros',
                 'Frutas Vermelhas',
                 'Limão Siciliano',
                 'Negresco',
@@ -134,51 +165,59 @@
                 'Tradicional'
             ];
 
+            // Função para adicionar novo sabor
             const adicionarSabor = () => {
-                setSabores([...sabores, {sabor: '', quantidade: 1}]);
+                setSabores([...sabores, { sabor: '', quantidade: 1 }]);
             };
 
+            // Função para atualizar quantidade de um sabor
             const atualizarQuantidade = (index, incremento) => {
                 const novosSabores = [...sabores];
                 const novaQuantidade = novosSabores[index].quantidade + incremento;
-                
+
                 if (novaQuantidade >= 1) {
                     novosSabores[index].quantidade = novaQuantidade;
                     setSabores(novosSabores);
                 }
             };
 
+            // Renderização do componente
             return (
                 <div className="container">
-                    <button 
+                    {/* Botão de troca de tema */}
+                    <button
                         className="btn btn-primary theme-switch"
                         onClick={() => setDarkMode(!darkMode)}
                     >
                         {darkMode ? '☀️' : '🌙'}
                     </button>
 
+                    {/* Área do logo */}
                     <div className="logo-space">
-                        <img 
-                            src={darkMode ? "./assets/images/santz-logo-dark.png" : "./assets/images/santz-logo.png"} 
-                            alt="Santz Logo" 
+                        <img
+                            src={darkMode ? "./assets/images/santz-logo-dark.png" : "./assets/images/santz-logo.png"}
+                            alt="Santz Logo"
                         />
                     </div>
 
+                    {/* Container do formulário */}
                     <div className="form-container">
+                        {/* Campo de nome */}
                         <div className="mb-3">
                             <label className="form-label">Nome:</label>
-                            <input 
-                                type="text" 
+                            <input
+                                type="text"
                                 className="form-control"
                                 value={nome}
                                 onChange={(e) => setNome(e.target.value)}
                             />
                         </div>
 
+                        {/* Mapeamento dos sabores selecionados */}
                         {sabores.map((item, index) => (
                             <div key={index} className="mb-3">
                                 <label className="form-label">Sabor:</label>
-                                <select 
+                                <select
                                     className="form-select mb-2"
                                     value={item.sabor}
                                     onChange={(e) => {
@@ -193,15 +232,16 @@
                                     ))}
                                 </select>
 
+                                {/* Controles de quantidade */}
                                 <div className="quantity-control">
-                                    <button 
+                                    <button
                                         className="btn btn-primary"
                                         onClick={() => atualizarQuantidade(index, -1)}
                                     >
                                         -
                                     </button>
                                     <span>{item.quantidade}</span>
-                                    <button 
+                                    <button
                                         className="btn btn-primary"
                                         onClick={() => atualizarQuantidade(index, 1)}
                                     >
@@ -211,13 +251,15 @@
                             </div>
                         ))}
 
-                        <button 
+                        {/* Botão para adicionar mais sabores */}
+                        <button
                             className="btn btn-primary w-100 mb-3"
                             onClick={adicionarSabor}
                         >
                             Adicionar outro sabor
                         </button>
 
+                        {/* Checkbox para pagamento fiado */}
                         <div className="form-check mb-3">
                             <input
                                 type="checkbox"
@@ -231,6 +273,7 @@
                             </label>
                         </div>
 
+                        {/* Opções de pagamento (visíveis apenas quando não é fiado) */}
                         {!fiado && (
                             <div className="payment-options mb-3">
                                 <button className="btn btn-primary w-100 mb-2">
@@ -242,6 +285,7 @@
                             </div>
                         )}
 
+                        {/* Botão de finalizar pedido */}
                         <button className="btn btn-primary w-100">
                             Finalizar Pedido
                         </button>
@@ -250,11 +294,15 @@
             );
         }
 
+        // Renderização do App no elemento root
         ReactDOM.render(<App />, document.getElementById('root'));
     </script>
 </body>
+
 </html>
+
 <style>
+  
     @media (max-width: 768px) {
         .container {
             padding: 10px;
@@ -285,6 +333,7 @@
         }
     }
 
+    
     @media (max-width: 480px) {
         .container {
             padding: 5px;

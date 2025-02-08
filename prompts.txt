@@ -1,0 +1,15 @@
+eu estou vendendo coookies no meu estagio e para melhorar minhas vendas e colher alguns dados quero fazer um site simples, a ideia é que fique um QRcode acima dos cookies e que após ser lido por quem vai comprar seja encaminhado para um site simples que colhe os dados "nome::", "sabor:" e um contador de quantidades ( um pequeno bloco que tenha um "+" e um "-" de cada lado), e que tambem seja possivel adicionar um outro sabor se for nescessario com um novo contador, faça esse projeto em html, react e css+bootstrap mais recente com um desing moderno( use as cores #262b56 e #c8beb8 no site ( pois sao a cor da minha logo) tambem deixe alguns espaços para que eu coloque minha logo
+
+faça uma estrutura inicial do site, o site deve ser responsivo ja que rodara principalmente em celulares
+
+faça o as funcionalidades de adicionar outro sabor  e o contadores, alem disso adicione as opção de sabores: chocolate, churros, frutas vermelhas, café, tradicional, red velvet, limçao siciliano, torta de maçã e negresco ( coloque em ordem alfabetica), faça as funcionalidade com react
+
+adicione a logo que esta em ./assets/images/santz-logo.png tambem retire o campo de qrcode e coloque a opção "fiado" como uma caixa de marcar (v) , caso a opção não seja marcada vc ira enviar as opções link de pagamento e copiar codigo píx
+
+reformule o layout do site para que não fique espaços em branco sem as cores do site, use a fonte "bright retro"  tambem adicione um"dark mode" que altera a logo usada para ./assets/images/santz-logo-dark.png
+
+volte a antiga forma do dark mode
+
+reformule todo dark mode para que funciione da forma mais comum usadareformule todo dark mode para que funciione da forma mais comum usada
+
+de as fonte dos nome "cookies recheado" e "finalizar pedido" as cores de #262b56 no dark mode e tambem ao botao do dark mode no dark mode
